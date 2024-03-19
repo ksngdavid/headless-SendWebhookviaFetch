@@ -69,7 +69,7 @@ customElements.define(
           // => Get current accessToken from Desktop store
          /* const agentID = this.agentId;
           logger.info('AgentID is: ' + agentID);*/
-
+          logger.info('Headless Widget Log: RONA agent state detected');
           this.sendWebhook();
  
           /*const ToggleAvailable = require('request').defaults({
@@ -174,20 +174,20 @@ customElements.define(
     // => Get current accessToken from Desktop store
     const agentID = this.agentId;
     //logger.info('AgentID is: ' + agentID);
-
+    logger.info('Headless Widget Log: sendWebhook function to send webhook to Connect');
     //Send Webhook to Connect to Change Agent State to Available
          try {
           logger.info('Sending Webhook to Connect');
           logger.info('Access Token is: ' + accessToken);
           logger.info('AgentID is: ' + agentID);
-          apiUrl = 'https://hooks.au.webexconnect.io/events/BSZ8JFFWW8';
+          let apiUrl = 'https://hooks.au.webexconnect.io/events/BSZ8JFFWW8';
           const response = await fetch(apiUrl, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
-              //body: JSON.stringify({
-                body: { 'accessToken': accessToken, 'agentId': agentID }
+              body: JSON.stringify({ accessToken, agentID})
+              //  body: { 'accessToken': accessToken, 'agentId': agentID }
           });
           if (response.ok) {
               logger.info('Answered Successfully');

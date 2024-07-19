@@ -1,7 +1,7 @@
 import { Desktop } from '@wxcc-desktop/sdk';
 
 // This is the logger initializer factory method for the headless widget
-export const logger = Desktop.logger.createLogger('headless-widget'); 
+export const logger = Desktop.logger.createLogger('sendwebhook-widget'); 
 
 // Some sample data points
 let callStartTime = 0 , callEndTime = 0 , callDuration = 0;
@@ -10,7 +10,7 @@ let isInitialized = false;
 let callType = 'Inbound';
 
 customElements.define(
-  'headless-crm-widget',
+  'headless-sendwebhook-widget',
   class extends HTMLElement {
     constructor() {
       super();
@@ -235,6 +235,8 @@ customElements.define(
     }
   }
 
-  disconnectedCallback() { Desktop.agentContact.removeAllEventListeners(); }
+  disconnectedCallback() { Desktop.agentContact.removeAllEventListeners();
+    logger.info('Headless Widget Log: Webcomponent disconnectedCallback function');
+   }
 
 });
